@@ -7,10 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght(400;600;800)&display=swap" rel="stylesheet">
     <style>
-        /* Define custom colors and font based on the flyer */
+        /* Define custom colors and font based on the professional theme */
         :root {
-            --color-primary: #043D2A; /* Deep Green/Teal */
-            --color-secondary: #0A3358; /* Dark Navy Blue */
+            --color-primary: #043D2A; /* Deep Green/Teal - Professional and Trustworthy */
+            --color-secondary: #0A3358; /* Dark Navy Blue - Corporate and Mature */
             --color-accent: #28a745; /* Bright WhatsApp Green */
         }
         .text-primary { color: var(--color-primary); }
@@ -23,15 +23,23 @@
             background-color: #f7f9fb;
         }
 
-        /* Custom shadow for the main offer box */
+        /* Custom shadow for the main offer box - NOTE: Vertical breathing animation removed */
         .offer-box-shadow {
             box-shadow: 0 10px 25px -3px rgba(10, 51, 88, 0.2), 0 4px 6px -2px rgba(10, 51, 88, 0.05);
+            /* Smoother, custom transition for noticeable effect */
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
         }
 
-        /* Styling the animated CTA button */
+        /* Enhanced Hover for Offer Box: Aggressive pop and lift (rotation removed) */
+        .offer-box-shadow:hover {
+            transform: scale(1.03) translateY(-8px); /* Removed rotate(-1deg) */
+            box-shadow: 0 20px 40px -5px rgba(10, 51, 88, 0.4); 
+        }
+
+        /* Styling the animated CTA button (Mobile/Fixed CTA - uses simpler pulse) */
         .whatsapp-cta {
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
+            animation: pulse-green 2s infinite; 
         }
 
         .whatsapp-cta:hover {
@@ -39,221 +47,316 @@
             animation: none;
         }
 
-        @keyframes pulse {
+        @keyframes pulse-green {
             0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
             100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
         }
-        
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--color-primary);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
+
+        /* Custom style to make the dropdown visually appealing and match theme */
+        #applicantTypeSelect {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%230A3358'%3E%3Cpath d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.5em 1.5em;
         }
 
-        @keyframes spin {
+        /* --- ENHANCED ANIMATIONS FOR INCREASED CONVERSION --- */
+
+        /* 1. Policy Alert (Trillion Dollar Smooth Pulse - Wiggle Removed) */
+        .policy-alert {
+            /* Smooth, impactful pulse timing adjusted to 2 seconds for the full cycle */
+            animation: alarm-pulse 2s infinite ease-in-out; 
+            border-width: 2px; 
+        }
+        @keyframes alarm-pulse {
+            /* Only scale (zoom) and box-shadow (glow) remain */
+            0% { 
+                transform: scale(1.0); 
+                opacity: 1; 
+                box-shadow: 0 0 5px rgba(220, 38, 38, 0.4); 
+            }
+            25% { 
+                transform: scale(1.005); 
+                opacity: 0.9; 
+                box-shadow: 0 0 10px rgba(220, 38, 38, 0.6); 
+            }
+            50% { 
+                /* Peak scale and glow */
+                transform: scale(1.01); 
+                opacity: 1; 
+                box-shadow: 0 0 15px rgba(220, 38, 38, 1); 
+            }
+            75% { 
+                transform: scale(1.005); 
+                opacity: 0.9; 
+                box-shadow: 0 0 10px rgba(220, 38, 38, 0.6); 
+            }
+            100% { 
+                transform: scale(1.0); 
+                opacity: 1; 
+                box-shadow: 0 0 5px rgba(220, 38, 38, 0.4); 
+            }
+        }
+        
+        /* 2. Price Box Animation (Breath) Removed - No need for @keyframes breath */
+        
+        /* 3. Requirements Navigator (Billion Dollar Focus Animation) - Existing */
+        .navigator-billion-focus {
+            position: relative;
+            overflow: hidden; 
+            border: 4px solid transparent; 
+            padding: 1px; 
+            /* Permanent subtle scale to draw persistent attention */
+            animation: subtle-scale 6s infinite ease-in-out;
+        }
+
+        @keyframes subtle-scale {
+            0% { transform: scale(1.0); }
+            50% { transform: scale(1.005); }
+            100% { transform: scale(1.0); }
+        }
+
+        /* Rotating Background Gradient Pseudo-Element (The "Billion Dollar" Effect) */
+        .navigator-billion-focus::before {
+            content: '';
+            position: absolute;
+            top: -150%;
+            left: -150%;
+            width: 400%;
+            height: 400%;
+            background: conic-gradient(
+                from 0deg,
+                rgba(4, 61, 42, 0.1) 0%, 
+                rgba(10, 51, 88, 0.9) 20%, 
+                rgba(220, 38, 38, 0.9) 40%, 
+                rgba(4, 61, 42, 0.9) 60%, 
+                rgba(10, 51, 88, 0.1) 80%, 
+                rgba(4, 61, 42, 0.1) 100%
+            );
+            z-index: 0;
+            animation: rotate-border 5s linear infinite;
+        }
+
+        @keyframes rotate-border {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Inner container to ensure content is over the rotating background and has a white base */
+        .navigator-inner-content {
+            position: relative;
+            z-index: 10;
+            background-color: white;
+            padding: 2rem; 
+            border-radius: 0.65rem; 
+            height: 100%;
+            width: 100%;
+        }
+
+        /* 4. Billion Dollar Desktop CTA Button Effect (Rotating Border) */
+        .billion-cta-desktop {
+            position: relative;
+            overflow: hidden; 
+            padding: 1px; /* Required for the pseudo-element border */
+            border-radius: 0.75rem;
+            text-decoration: none;
+            box-shadow: none !important;
+            animation: subtle-scale 6s infinite ease-in-out;
+            display: flex;
+            align-items: stretch;
+        }
+
+        /* Rotating Border Gradient */
+        .billion-cta-desktop::before {
+            content: '';
+            position: absolute;
+            top: -150%;
+            left: -150%;
+            width: 400%;
+            height: 400%;
+            background: conic-gradient(
+                from 0deg,
+                rgba(40, 167, 69, 0.1) 0%, /* Green Faded */
+                rgba(4, 61, 42, 0.8) 20%, /* Deep Green Strong */
+                rgba(10, 51, 88, 0.8) 40%, /* Navy Blue Strong */
+                rgba(40, 167, 69, 0.8) 60%, /* Green Strong */
+                rgba(40, 167, 69, 0.1) 100%
+            );
+            z-index: 0;
+            animation: rotate-border 3s linear infinite; /* Faster rotation for urgency */
+            border-radius: 0.75rem; 
+        }
+
+        /* Inner wrapper for solid background and content */
+        .billion-cta-inner {
+            position: relative;
+            z-index: 10;
+            background-color: #25D366; /* WhatsApp Green */
+            padding: 1rem 2rem; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            border-radius: 0.65rem; 
+            color: white;
+            font-weight: 800; 
+            font-size: 1.25rem; 
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            gap: 0.5rem; /* space-x-2 equivalent */
+        }
+
+        .billion-cta-inner:hover {
+            background-color: var(--color-primary); /* Darker hover */
+            transform: scale(1.02);
+        }
+
+        /* 5. Billion Dollar Footer CTA Effect (Text Glow) -- REMOVED */
+        /* All CSS for .billion-cta-footer and @keyframes text-glow removed */
+
     </style>
     <script>
         // --- SINGLE SOURCE OF TRUTH FOR PRICE ---
-        // To change the price, ONLY modify the TIN_PRICE_NUMERIC value below.
-        const TIN_PRICE_NUMERIC = 3500; // THE SINGLE PRICE CONTROL POINT (e.g., change 3500 to 4000)
-        // Derived variable: Automatically formats the number with the Naira symbol and comma.
+        const TIN_PRICE_NUMERIC = 3500; 
         const TIN_PRICE_NAIRA = `₦${TIN_PRICE_NUMERIC.toLocaleString('en-US')}`; 
         
-        // --- Gemini API Configuration ---
-        const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=";
-        // IMPORTANT: When hosting externally (e.g., GitHub Pages), you MUST insert your own API key here.
-        // Get your key from Google AI Studio.
-        const API_KEY = "AIzaSyBZKHC5W6oDGhzXnt2bDUYCY7Ei-L-BoHc"; 
-        
-        // --- Core Application Logic ---
-        document.addEventListener('DOMContentLoaded', function() {
-            // 1. Dynamic Price Injection (Single Source of Truth)
-            document.getElementById('displayPrice').textContent = TIN_PRICE_NAIRA;
-            
-            // NEW LINE: Update the title of step 2 to include the dynamic price
-            document.getElementById('stepTwoTitle').textContent = `Pay the ${TIN_PRICE_NAIRA} Fee`;
+        // --- STATIC DATA: SECURE LOOKUP DATABASE (NO API KEY REQUIRED) ---
+        const TIN_REQUIREMENTS_DATA = {
+            "default": {
+                title: "Welcome to the Secure Requirements Navigator!",
+                icon: '🖥️',
+                content: [
+                    "Please select your applicant status from the dropdown menu below to view the precise documents required for your TIN application."
+                ]
+            },
+            "individual": {
+                title: "Individual Applicant (Employed, Freelancer, Student)",
+                icon: '👤',
+                content: [
+                    "A Clear Scan or Photo of your National Identity Number (NIN) slip or card.",
+                    "A recent Utility Bill (NEPA/PHCN bill, water bill) showing your address, or a Letter of Residence from your community head.",
+                    "Your full name, date of birth, and phone number.",
+                    "A passport photograph (soft copy)."
+                ]
+            },
+            "business_name": {
+                title: "Registered Business Name (Sole Proprietorship)",
+                icon: '💼',
+                content: [
+                    "CAC Certificate of Registration of Business Name.",
+                    "Proprietor's National Identity Number (NIN) slip or card.",
+                    "Proprietor's utility bill (Proof of Address).",
+                    "Business address and phone number."
+                ]
+            },
+            "registered_company": {
+                title: "Registered Company (Limited Liability Company - LTD/PLC)",
+                icon: '🏢',
+                content: [
+                    "Certificate of Incorporation (CAC).",
+                    "Form CAC 1.1 or Business Details containing particulars of Directors and Share Capital.",
+                    "Memorandum and Articles of Association (MEMART).",
+                    "Official company address and contact details.",
+                    "NINs of at least two Directors."
+                ]
+            }
+        };
 
-            // This line constructs the full sentence using the price variable, exactly as requested.
+        // --- Core Application Logic ---
+
+        // Function to close the requirements modal
+        function closeModal() {
+            document.getElementById('requirementsModal').classList.add('hidden');
+            document.getElementById('requirementsModal').classList.remove('flex');
+            // Reset dropdown to force selection next time
+            document.getElementById('applicantTypeSelect').value = 'default';
+        }
+
+        // Static Lookup Function (Populates and opens the modal)
+        function showRequirements(selectedKey) {
+            
+            if (selectedKey === 'default') {
+                // If default is selected (or reset), do nothing (or reset any previous message)
+                return;
+            }
+
+            const data = TIN_REQUIREMENTS_DATA[selectedKey];
+            
+            // Elements in the modal
+            const modalTitle = document.getElementById('modalTitle');
+            const modalSubtitle = document.getElementById('modalSubtitle'); 
+            const modalBody = document.getElementById('modalBody');
+            const modalCTA = document.getElementById('modalCTA');
+            const modal = document.getElementById('requirementsModal');
+
+            // Check for valid data before proceeding
+            if (!data) {
+                modalTitle.textContent = "Error";
+                modalSubtitle.textContent = "An error occurred while fetching requirements.";
+                modalBody.innerHTML = `<p class="text-red-500 font-bold">Error: Requirements data not found for selection.</p>`;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                return;
+            }
+            
+            // Populate content - Refactored for cleaner, single-line main heading
+            modalTitle.innerHTML = `<span class="text-primary">${data.title}</span>`;
+            modalSubtitle.textContent = ""; 
+            
+            let listItems = data.content.map(item => `
+                <li class="flex items-start">
+                    <span class="mr-3 text-primary font-bold text-xl">&#10003;</span>
+                    <span class="text-gray-700">${item}</span>
+                </li>
+            `).join('');
+            
+            modalBody.innerHTML = `
+                <p class="text-xl text-secondary mb-4 font-extrabold border-b pb-2">Official Documents Checklist:</p>
+                <ul class="list-none ml-0 space-y-4 text-base">
+                    ${listItems}
+                </ul>
+            `;
+            
+            modalCTA.href = document.querySelector('.whatsapp-link').href;
+            
+            // Show modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Dynamic Price Injection
+            document.getElementById('displayPrice').textContent = TIN_PRICE_NAIRA;
+            document.getElementById('stepTwoTitle').textContent = `Pay the ${TIN_PRICE_NAIRA} Fee`;
             document.getElementById('stepTwoPriceText').textContent = `Make the one-time service payment of ${TIN_PRICE_NAIRA} for fast-track processing and certification.`;
 
             // 2. WhatsApp Link Setup
             const phoneNumber = '2349085006059'; 
-            // The message uses the numeric price variable
             const message = encodeURIComponent(`Yes! I want to get my Nigerian TIN and Certificate instantly for N${TIN_PRICE_NUMERIC}. I need the fast track service.`);
             const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
             
             document.querySelectorAll('.whatsapp-link').forEach(button => {
                 button.href = whatsappLink;
             });
-
-            // 3. Event Listener for LLM feature
-            document.getElementById('fetchRequirementsBtn').addEventListener('click', fetchTINRequirements);
-        });
-
-        // --- LLM Feature Logic ---
-
-        // Exponential backoff utility for retrying API calls
-        async function fetchWithBackoff(url, options, maxRetries = 5) {
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    const response = await fetch(url, options);
-                    if (response.status === 429 && i < maxRetries - 1) {
-                        // Retry with exponential delay
-                        const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
-                        await new Promise(resolve => setTimeout(resolve, delay));
-                        continue;
-                    }
-                    if (!response.ok) {
-                        const errorBody = await response.json();
-                        throw new Error(`API Error: ${response.status} - ${errorBody.error.message}`);
-                    }
-                    return response;
-                } catch (error) {
-                    if (i === maxRetries - 1) throw error;
-                    // Log error internally but do not display console messages for retries
-                }
-            }
-        }
-
-        async function fetchTINRequirements() {
-            const queryElement = document.getElementById('requirementsQuery');
-            const outputElement = document.getElementById('requirementsOutput');
-            const button = document.getElementById('fetchRequirementsBtn');
-            const query = queryElement.value.trim();
-
-            if (!query) {
-                outputElement.innerHTML = '<p class="text-red-500">Please describe your situation (e.g., "I am a freelancer in Lagos" or "I need a TIN for my registered company").</p>';
-                return;
-            }
-
-            // Check if API key is provided
-            if (API_KEY.includes('PASTE YOUR GOOGLE AI STUDIO API KEY HERE') || API_KEY === '') {
-                 outputElement.innerHTML = '<p class="text-red-600 font-bold">Error: API Key Missing. Please edit index.html and insert your Google AI Studio API key for this feature to work on external hosting.</p>';
-                 return;
-            }
-
-            // Set loading state
-            button.disabled = true;
-            button.innerHTML = '<div class="loader mr-2"></div> Fetching Advice...';
-            outputElement.innerHTML = '';
             
-            // --- UPDATED SYSTEM INSTRUCTION (Absolute Restriction) ---
-            const systemPrompt = "You are a Nigerian Tax Compliance Assistant. Your **ONLY** allowed output is a single, unnumbered bulleted list (using markdown '*') of the **required documents and essential information** the user must submit to a third-party service provider for TIN registration. The list must be accurate and derived from official FIRS/CAC requirements for the user's specific status. You MUST start the list immediately. Do NOT include any introductory text, closing remarks, registration steps, processing details, links, or mention costs or free alternatives. Output the bulleted list only.";
-
-            const payload = {
-                contents: [{ parts: [{ text: query }] }],
-                // Enable Google Search grounding for real-time information
-                tools: [{ "google_search": {} }],
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                },
-            };
-            
-            try {
-                const response = await fetchWithBackoff(`${GEMINI_API_URL}${API_KEY}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+            // 3. Event Listener Setup for Dropdown
+            const dropdown = document.getElementById('applicantTypeSelect');
+            if (dropdown) {
+                dropdown.addEventListener('change', function() {
+                    const selectedKey = this.value;
+                    showRequirements(selectedKey);
                 });
-                
-                const result = await response.json();
-                const candidate = result.candidates?.[0];
-
-                if (candidate && candidate.content?.parts?.[0]?.text) {
-                    const text = candidate.content.parts[0].text;
-                    
-                    let sourcesHtml = '';
-                    const groundingMetadata = candidate.groundingMetadata;
-                    if (groundingMetadata && groundingMetadata.groundingAttributions) {
-                        const sources = groundingMetadata.groundingAttributions 
-                            .map(attribution => ({
-                                uri: attribution.web?.uri,
-                                title: attribution.web?.title,
-                            }))
-                            .filter(source => source.uri && source.title);
-                        
-                        if (sources.length > 0) {
-                            sourcesHtml = '<div class="mt-4 p-3 bg-gray-100 rounded-lg text-sm">';
-                            sourcesHtml += '<p class="font-semibold text-gray-700 mb-2">Sources for Grounding (Learn More):</p>';
-                            sourcesHtml += '<ul class="list-disc ml-4 space-y-1">';
-                            sources.forEach((source, index) => {
-                                sourcesHtml += `<li><a href="${source.uri}" target="_blank" class="text-blue-600 hover:text-blue-800">${source.title || 'Source ' + (index + 1)}</a></li>`;
-                            });
-                            sourcesHtml += '</ul></div>';
-                        }
-                    }
-
-                    // Convert markdown response to basic HTML (for lists and paragraphs)
-                    let formattedText = text;
-                    formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
-                    // Replace simple list items (Markdown '*' or '-') with <li>, handling potential multi-line list items
-                    formattedText = formattedText.split('\n').map(line => {
-                        if (line.match(/^(\*|\-)\s/)) {
-                            return `<li>${line.substring(line.match(/^(\*|\-)\s/).index + line.match(/^(\*|\-)\s/)[0].length).trim()}</li>`;
-                        }
-                        return line;
-                    }).join('\n');
-                    
-                    // Wrap multiple list items in ul tags and paragraphs in p tags
-                    const lines = formattedText.split('\n');
-                    let inList = false;
-                    let htmlParts = [];
-                    lines.forEach(line => {
-                        if (line.startsWith('<li>')) {
-                            if (!inList) {
-                                htmlParts.push('<ul>');
-                                inList = true;
-                            }
-                            htmlParts.push(line);
-                        } else {
-                            if (inList) {
-                                htmlParts.push('</ul>');
-                                inList = false;
-                            }
-                            if (line.trim()) {
-                                htmlParts.push(`<p>${line.trim()}</p>`);
-                            }
-                        }
-                    });
-                    if (inList) {
-                        htmlParts.push('</ul>');
-                    }
-                    formattedText = htmlParts.join('');
-                    
-                    // Ensure the output title is clear that this is a list of requirements
-                    outputElement.innerHTML = `
-                        <div class="p-4 bg-green-50 rounded-xl border border-green-200">
-                            <h4 class="text-xl font-bold text-primary mb-3">Your Required Documents/Information:</h4>
-                            <div class="text-gray-700 space-y-3">${formattedText}</div>
-                            ${sourcesHtml}
-                        </div>
-                    `;
-
-                } else {
-                    outputElement.innerHTML = '<p class="text-red-500">Sorry, I could not generate the compliance advice. Please try a different query or contact support via WhatsApp.</p>';
-                }
-
-            } catch (error) {
-                console.error("Gemini API Error:", error);
-                outputElement.innerHTML = `<p class="text-red-500">An error occurred: ${error.message}. Please check your connection or try again.</p>`;
-            } finally {
-                // Reset button state
-                button.disabled = false;
-                button.innerHTML = '✨ Get Requirements Advice';
             }
-        }
-
+        });
     </script>
 </head>
 <body class="antialiased min-h-screen">
-
+    
     <!-- Fixed WhatsApp CTA Button for Mobile/Scroll -->
     <a href="#" class="whatsapp-link fixed bottom-4 right-4 z-50 bg-[#25D366] hover:bg-[#128C7E] text-white font-extrabold py-3 px-6 rounded-full text-lg shadow-lg whatsapp-cta md:hidden flex items-center space-x-2">
         <!-- WhatsApp Icon (inline SVG) -->
@@ -266,14 +369,14 @@
         
         <!-- Header Section -->
         <header class="text-center mb-12">
-            <!-- Adjusted H1 size: text-3xl for mobile, scaling up to sm:text-5xl -->
             <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-tight">
                 GET YOUR NIGERIAN <span class="text-primary">TIN!</span>
             </h1>
             <p class="mt-4 text-xl sm:text-2xl text-gray-700 font-medium">
                 Fast & Easy Taxpayer Identification Number Registration Service
             </p>
-            <div class="mt-2 text-sm text-red-600 font-semibold border border-red-300 bg-red-50 p-2 rounded-lg inline-block">
+            <!-- Policy Alert Banner with FLASH/ZOOM Animation -->
+            <div class="mt-2 text-sm text-red-600 font-semibold border border-red-300 bg-red-50 p-2 rounded-lg inline-block policy-alert">
                 <span role="img" aria-label="alert">🚨</span> New Policy Alert: TIN is now mandatory and linked to bank accounts! Don't wait!
             </div>
         </header>
@@ -281,7 +384,7 @@
         <!-- Main Offer and Illustration Section -->
         <div class="mb-12">
             
-            <!-- Offer Box (Now full width) -->
+            <!-- Offer Box - Hover Scale/Lift remains. Rotation is removed. -->
             <div class="w-full p-6 bg-white rounded-xl offer-box-shadow border-t-8 border-primary">
                 
                 <h2 class="text-3xl font-bold mb-4 text-secondary text-center">Avoid the Queues! Get Certified.</h2>
@@ -289,7 +392,6 @@
                 <!-- Fee Section -->
                 <div class="my-6 p-4 rounded-lg bg-primary text-white text-center">
                     <p class="text-xl font-semibold opacity-80">One-Time Fee:</p>
-                    <!-- Displayed price is now dynamically set by JavaScript using the variable -->
                     <p id="displayPrice" class="text-4xl sm:text-5xl font-extrabold">₦3,500</p>
                 </div>
                 
@@ -309,11 +411,13 @@
                     </li>
                 </ul>
                 
-                <!-- Primary Desktop CTA Button - Width limited to max-w-sm and centered (mx-auto) -->
-                <a href="#" class="whatsapp-link mt-8 max-w-sm mx-auto hidden md:flex items-center justify-center space-x-2 bg-[#25D366] hover:bg-primary text-white font-extrabold py-4 rounded-xl text-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <!-- WhatsApp Icon (inline SVG) -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 0C6.113 0 1.258 4.855 1.258 10.743c0 1.884.498 3.738 1.455 5.372l-1.63 4.97c-.053.161.026.335.187.388.049.017.1.025.15.025.111 0 .216-.046.284-.127l5.053-3.134c1.558.835 3.32 1.272 5.092 1.272 5.888 0 10.743-4.855 10.743-10.743C22.744 4.855 17.889 0 12.001 0zm4.512 14.128c-.024.062-.075.102-.132.128-.216.096-.443.144-.67.144-.069 0-.138-.007-.206-.02-.152-.029-.267-.066-.372-.112-1.306-.583-2.607-1.34-3.874-2.273-.205-.15-.401-.31-.588-.479-.115-.107-.22-.218-.316-.334-.143-.166-.277-.34-.397-.521-.13-.197-.245-.407-.345-.632-.122-.276-.226-.576-.307-.899-.088-.352-.132-.712-.132-1.077 0-.365.044-.725.132-1.077.081-.323.185-.623.307-.899.1-.225.215-.435.345-.632.12-.181.254-.355.397-.521.096-.116.201-.227.316-.334.187-.169.383-.329.588-.479 1.267-.933 2.568-1.69 3.874-2.273.105-.046.22-.083.372-.112.068-.013.137-.02.206-.02.227 0 .454.048.67.144.057.026.108.066.132.128.093.242.14.498.14.757 0 .26-.047.516-.14.757z"/></svg>
-                    <span>Click Here to Start Now</span>
+                <!-- Primary Desktop CTA Button - Now uses the Billion Dollar Effect -->
+                <a href="#" class="whatsapp-link mt-8 max-w-sm mx-auto hidden md:flex billion-cta-desktop">
+                    <div class="billion-cta-inner">
+                        <!-- WhatsApp Icon (inline SVG) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 0C6.113 0 1.258 4.855 1.258 10.743c0 1.884.498 3.738 1.455 5.372l-1.63 4.97c-.053.161.026.335.187.388.049.017.1.025.15.025.111 0 .216-.046.284-.127l5.053-3.134c1.558.835 3.32 1.272 5.092 1.272 5.888 0 10.743-4.855 10.743-10.743C22.744 4.855 17.889 0 12.001 0zm4.512 14.128c-.024.062-.075.102-.132.128-.216.096-.443.144-.67.144-.069 0-.138-.007-.206-.02-.152-.029-.267-.066-.372-.112-1.306-.583-2.607-1.34-3.874-2.273-.205-.15-.401-.31-.588-.479-.115-.107-.22-.218-.316-.334-.143-.166-.277-.34-.397-.521-.13-.197-.245-.407-.345-.632-.122-.276-.226-.576-.307-.899-.088-.352-.132-.712-.132-1.077 0-.365.044-.725.132-1.077.081-.323.185-.623.307-.899.1-.225.215-.435.345-.632.12-.181.254-.355.397-.521.096-.116.201-.227.316-.334.187-.169.383-.329.588-.479 1.267-.933 2.568-1.69 3.874-2.273.105-.046.22-.083.372-.112.068-.013.137-.02.206-.02.227 0 .454.048.67.144.057.026.108.066.132.128.093.242.14.498.14.757 0 .26-.047.516-.14.757z"/></svg>
+                        <span>Click Here to Start Now</span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -331,9 +435,7 @@
                 
                 <div class="p-6 bg-white rounded-xl shadow-md border-b-4 border-primary hover:shadow-lg transition duration-300">
                     <div class="text-4xl text-primary font-extrabold mb-2">2</div>
-                    <!-- Added ID here to enable dynamic update -->
                     <h3 id="stepTwoTitle" class="text-xl font-bold text-secondary mb-3">Pay the Fee</h3>
-                    <!-- This content is now fully managed by the script using the TIN_PRICE_NAIRA variable -->
                     <p id="stepTwoPriceText" class="text-gray-600">Make the one-time service payment of the fee for fast-track processing and certification.</p>
                 </div>
                 
@@ -345,29 +447,32 @@
             </div>
         </section>
 
-        <!-- GEMINI LLM Feature: TIN Requirements Assistant -->
-        <section class="mt-16 p-8 bg-white rounded-xl shadow-2xl border-2 border-green-500">
-            <h2 class="text-3xl font-bold text-secondary mb-4 flex items-center justify-center space-x-2">
-                <span class="text-green-500">✨</span> 
-                <span>TIN Requirements Assistant</span>
-                <span class="text-green-500">✨</span>
-            </h2>
-            <p class="text-gray-600 mb-4 text-center max-w-2xl mx-auto">
-                Not sure exactly what you need? Describe your status (e.g., "I am an individual with a business name," or "I am a new company in Kano") and our AI assistant will fetch the latest official document requirements.
-            </p>
+        <!-- Requirements Navigator (Secure Static Lookup) - Billion Dollar Focus Animation -->
+        <section class="mt-16 relative overflow-hidden rounded-xl shadow-2xl navigator-billion-focus p-1">
+            <!-- Inner content wrapper to provide the white background -->
+            <div class="navigator-inner-content"> 
+                <h2 class="text-3xl font-bold text-secondary mb-4 text-center">
+                    Official TIN Requirements Lookup
+                </h2>
+                <p class="text-gray-600 mb-6 text-center max-w-2xl mx-auto">
+                    Use the professional selection tool below to instantly confirm the precise documents required for your status.
+                </p>
 
-            <div class="space-y-4">
-                <textarea id="requirementsQuery" rows="3" placeholder="Example: I need a TIN for my side hustle selling clothes in Port Harcourt." 
-                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary resize-none"></textarea>
-                
-                <button id="fetchRequirementsBtn" 
-                    class="w-full flex items-center justify-center bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-xl transition duration-300 shadow-lg">
-                    ✨ Get Requirements Advice
-                </button>
+                <!-- Input Area (Dropdown) -->
+                <div class="mb-8 max-w-3xl mx-auto">
+                    <label for="applicantTypeSelect" class="block text-left text-lg font-semibold text-secondary mb-2">
+                        <span class="text-primary font-extrabold">STEP 1:</span> Select Your Applicant Status
+                    </label>
+                    <select id="applicantTypeSelect" class="w-full p-4 border-2 border-secondary rounded-xl text-lg bg-white shadow-inner font-medium focus:ring-4 focus:ring-primary/30 focus:border-primary transition duration-200">
+                        <option value="default" disabled selected>-- Choose Applicant Type --</option>
+                        <option value="individual">Individual Applicant (Staff, Student, Freelancer)</option>
+                        <option value="business_name">Registered Business Name (Sole Proprietorship)</option>
+                        <option value="registered_company">Limited Liability Company (LTD/PLC)</option>
+                    </select>
+                </div>
 
-                <!-- Output Area -->
-                <div id="requirementsOutput" class="mt-4 min-h-[100px]">
-                    <!-- AI response will be injected here -->
+                <div class="text-center p-4 bg-gray-100 rounded-lg text-gray-500 font-medium">
+                    Select an option above to view the detailed requirements in a pop-up window.
                 </div>
             </div>
         </section>
@@ -377,7 +482,7 @@
         <footer class="mt-16 pt-8 border-t border-gray-300 text-center text-gray-600">
             <p class="mb-2">Visit us today! Talk to a representative:</p>
             <div class="flex justify-center text-lg font-semibold">
-                <!-- WhatsApp Link (Primary CTA) -->
+                <!-- WhatsApp Link (Primary CTA) - Effects Removed -->
                 <a href="#" class="whatsapp-link text-[#25D366] hover:text-primary transition duration-200">
                     <span role="img" aria-label="whatsapp">💬</span> Chat with us on WhatsApp
                 </a>
@@ -385,6 +490,41 @@
             <p class="mt-4 text-sm">&copy; 2025 TRILLION TECH. All Rights Reserved. Professional, Accredited Service.</p>
         </footer>
     </div>
+
+    <!-- Requirements Modal / Dialog Box -->
+    <div id="requirementsModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-gray-900 bg-opacity-70 items-center justify-center p-4 transition-opacity duration-300" onclick="if(event.target.id === 'requirementsModal') closeModal()">
+        
+        <!-- Modal Content Container -->
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full transform transition-all duration-300 scale-100 border-t-8 border-primary">
+            
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-gray-200 bg-gray-50 rounded-t-lg">
+                <div class="flex justify-between items-start">
+                    <!-- Main Title injected here -->
+                    <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-secondary leading-tight">
+                        <!-- Content Injected Here by JS -->
+                    </h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition duration-150 ml-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <p id="modalSubtitle" class="text-sm sm:text-base text-gray-600 mt-1">
+                    <!-- Currently empty -->
+                </p>
+            </div>
+            
+            <!-- Modal Body (Requirements List) -->
+            <div id="modalBody" class="p-6">
+                <!-- List injected here -->
+            </div>
+            
+            <!-- Modal Footer (CTA) -->
+            <div class="p-6 bg-primary/10 rounded-b-xl text-center">
+                <a id="modalCTA" href="#" class="inline-block text-lg font-bold text-white bg-secondary hover:bg-primary px-8 py-3 rounded-xl transition duration-300 shadow-lg">
+                    <span role="img" aria-label="whatsapp">💬</span> Start Application via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-
